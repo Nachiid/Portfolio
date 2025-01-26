@@ -1,0 +1,477 @@
+:root {
+  --primary: #2a3d45; /* Couleur primaire */
+  --secondary: #2a2a2a; /* Couleur secondaire */
+  --accent: #ff715b; /* Couleur d'accentuation */
+  --background: #f9f9f9; /* Couleur de fond */
+  --text: #2a2a2a; /* Couleur du texte */
+  --card-bg: #ffffff; /* Couleur de fond des cartes */
+  --nav-height: 70px; /* Hauteur de la barre de navigation */
+  --transition-time: 0.6s; /* Durée des transitions */
+}
+
+/* Réinitialisation des styles par défaut */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif; /* Police de caractères par défaut */
+}
+
+/* Style de base pour le corps de la page */
+body {
+  background: var(--background);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden; /* Empêche le défilement */
+}
+
+/* Style des liens */
+a {
+  color: var(--text); /* Couleur du texte des liens */
+  text-decoration: none; /* Supprime le soulignement */
+}
+
+/* Barre de navigation principale */
+.main-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: rgba(255, 255, 255, 0.97); /* Fond semi-transparent */
+  backdrop-filter: blur(12px); /* Effet de flou */
+  z-index: 1000; /* Assure que la barre de navigation est au-dessus des autres éléments */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  padding: 0 5%; /* Espacement intérieur */
+}
+
+/* Conteneur de la barre de navigation */
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between; /* Espacement entre les éléments */
+  align-items: center; /* Alignement vertical */
+}
+
+/* Style du logo */
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+  position: relative;
+}
+
+/* Ligne décorative sous le logo */
+.logo::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 35px;
+  height: 3px;
+  background: var(--accent);
+}
+
+/* Conteneur des liens de navigation */
+.nav-links {
+  display: flex;
+  gap: 2.5rem; /* Espacement entre les liens */
+}
+
+/* Style des liens de navigation */
+.nav-link {
+  color: var(--primary);
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease; /* Transition de couleur au survol */
+}
+
+/* Ligne décorative sous les liens de navigation */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease; /* Transition de largeur au survol */
+}
+
+/* Style du lien actif */
+.nav-link.active {
+  color: var(--accent);
+}
+
+/* Ligne décorative sous le lien actif ou au survol */
+.nav-link.active::after,
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Conteneur principal de la page */
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding-top: var(--nav-height); /* Espacement pour la barre de navigation */
+}
+
+/* Style des sections de la page */
+.section {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - var(--nav-height));
+  padding: 2rem 5%;
+  overflow-y: auto; /* Défilement vertical */
+  overscroll-behavior: contain; /* Empêche le défilement de la page parente */
+  transform: translateY(100%); /* Déplace la section hors de la vue */
+  opacity: 0;
+  visibility: hidden;
+  transition: transform var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1),
+    opacity var(--transition-time) ease; /* Transition pour l'apparition */
+}
+
+/* Style de la section active */
+.section.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Contenu des sections */
+.section-content {
+  min-height: calc(100vh - var(--nav-height) - 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Contenu des sections pour les compétences */
+.section-content-comp {
+  min-height: calc(100vh - var(--nav-height) - 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Grille des compétences */
+.competence-grid {
+  display: grid;
+  gap: 2rem; /* Espacement entre les éléments */
+  grid-template-columns: 1fr; /* Une seule colonne */
+  padding: 2rem 0; /* Espacement intérieur */
+}
+
+/* Grille des cartes */
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+/* Style par défaut de la grille des cartes */
+.card-grid {
+  grid-template-columns: 1fr; /* Une seule colonne par défaut */
+}
+
+/* Style des cartes */
+.card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s ease; /* Transition pour l'apparition */
+}
+
+/* Style des cartes actives */
+.card.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Grille verticale spécifique à l'accueil */
+.card-grid-vertical {
+  grid-template-columns: 1fr;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Style des cartes dans la grille verticale */
+.card-grid-vertical .card {
+  margin: 1rem 0;
+  min-height: auto;
+  padding: 1.5rem;
+}
+
+/* Grille horizontale pour les autres sections */
+.card-grid:not(.card-grid-vertical) {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Style du titre des sections */
+.section-title {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+/* Ligne décorative sous le titre des sections */
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 3px;
+  background: var(--secondary);
+}
+
+/* Style du titre des projets */
+.h3-projet {
+  display: flex; /* Utilise Flexbox pour aligner le titre et l'icône */
+  align-items: center; /* Centre verticalement le titre et l'icône */
+  justify-content: space-between; /* Espace entre le titre et l'icône */
+}
+
+/* Style des liens GitHub */
+.github-link {
+  text-decoration: none; /* Supprime le soulignement */
+  color: var(--text); /* Couleur du texte */
+  margin-left: 0.5rem; /* Espace entre le titre et l'icône */
+  transition: color 0.3s ease; /* Transition de couleur au survol */
+}
+
+/* Style des icônes GitHub */
+.github-link i {
+  font-size: 1.4rem; /* Taille de l'icône */
+  vertical-align: middle; /* Alignement vertical */
+}
+
+/* Changement de couleur au survol des liens GitHub */
+.github-link:hover {
+  color: var(--accent);
+}
+
+/* Conteneur des technologies utilisées */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+/* Style des pastilles de technologie */
+.tech-pill {
+  background: var(--accent);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Style des pastilles de technologie pour les projets */
+.tech-pill-projet {
+  border: 2px solid var(--accent); /* Bordure */
+  color: var(--text); /* Couleur du texte */
+  padding: 0.6rem 1.2rem; /* Espacement intérieur */
+  border-radius: 24px; /* Coins arrondis */
+  font-size: 0.9rem; /* Taille de la police */
+  font-weight: 500; /* Poids de la police */
+  background: transparent; /* Fond transparent */
+  transition: all 0.3s ease; /* Transition au survol */
+}
+
+/* Effet au survol des pastilles de technologie pour les projets */
+.tech-pill-projet:hover {
+  background: var(--accent); /* Fond avec la couleur d'accentuation */
+  color: var(--card-bg); /* Couleur du texte */
+  transform: translateY(-2px); /* Effet de levée */
+  box-shadow: 0 4px 12px rgba(255, 113, 91, 0.2); /* Ombre légère */
+}
+
+/* Points de navigation */
+.nav-dots {
+  position: fixed;
+  right: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+/* Style des points de navigation */
+.nav-dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 1.2rem 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transition au survol */
+}
+
+/* Style du point de navigation actif */
+.nav-dot.active {
+  background: var(--accent);
+  transform: scale(1.4); /* Agrandissement */
+}
+
+/* Styles pour les écrans de petite taille (max-width: 768px) */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Masque les liens de navigation */
+  }
+
+  .section {
+    padding: 90px 5% 2rem; /* Ajustement du padding */
+  }
+
+  .section-title {
+    font-size: 2.2rem; /* Taille du titre réduite */
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr; /* Une seule colonne */
+  }
+
+  .nav-dots {
+    right: 1.2rem; /* Ajustement de la position */
+  }
+}
+
+/* En-tête des catégories */
+.category-header {
+  display: flex;
+  align-items: center; /* Alignement vertical */
+  gap: 1rem; /* Espace entre l'icône et le titre */
+  margin-bottom: 1.5rem; /* Espace en dessous */
+}
+
+/* Style des icônes de catégorie */
+.category-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px; /* Coins arrondis */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style des icônes dans les catégories */
+.category-icon i {
+  font-size: 1.8rem; /* Taille de l'icône */
+  color: var(--text); /* Couleur de l'icône */
+  transition: transform 0.3s ease; /* Transition au survol */
+}
+
+/* Effet de zoom au survol des icônes */
+.category-icon:hover i {
+  transform: scale(1.1);
+}
+
+/* Style du titre des catégories */
+.category-title {
+  font-size: 1.4rem;
+  color: var(--primary); /* Couleur du titre */
+  font-weight: 600; /* Texte en gras */
+  position: relative;
+}
+
+/* Ligne décorative sous le titre des catégories */
+.category-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40%;
+  height: 2px;
+  background: var(--secondary); /* Couleur de la ligne */
+  transition: width 0.3s ease; /* Transition de largeur au survol */
+}
+
+/* Effet au survol du titre des catégories */
+.category-header:hover .category-title::after {
+  width: 100%; /* La ligne s'étend */
+}
+
+/* Section Contact */
+.section-content-contact {
+  min-height: calc(100vh - var(--nav-height) - 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Formulaire de contact */
+.contact-form {
+  max-width: 600px; /* Largeur maximale */
+  margin: 0 auto; /* Centrage */
+  display: grid;
+  grid-template-columns: 1fr; /* Une seule colonne */
+  gap: 1.5rem; /* Espacement entre les éléments */
+}
+
+/* Groupe Nom et Prénom */
+.name-group {
+  display: flex; /* Utilise Flexbox pour aligner les champs */
+  gap: 1.5rem; /* Espace entre les champs */
+}
+
+/* Style des champs du formulaire */
+.name-group .form-group {
+  flex: 1; /* Les champs prennent une largeur égale */
+}
+
+/* Style des champs de formulaire */
+.form-group input,
+.form-group textarea {
+  width: 100%; /* Largeur complète */
+  padding: 0.8rem; /* Espacement intérieur */
+  border: 2px solid var(--secondary); /* Bordure */
+  border-radius: 12px; /* Coins arrondis */
+  font-size: 1rem;
+  color: var(--text); /* Couleur du texte */
+  background: var(--background); /* Fond du champ */
+  transition: border-color 0.3s ease; /* Transition de la bordure */
+}
+
+/* Style des champs de formulaire au focus */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent); /* Changement de couleur de la bordure */
+  outline: none; /* Supprime le contour par défaut */
+}
+
+/* Style du bouton de soumission */
+.submit-btn {
+  color: var(--secondary); /* Couleur du texte */
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px; /* Coins arrondis */
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transition au survol */
+}
+
+/* Effet au survol du bouton de soumission */
+.submit-btn:hover {
+  color: var(--card-bg); /* Couleur du texte */
+  border: none;
+  background: var(--accent); /* Changement de couleur */
+  transform: translateY(-2px); /* Effet de levée */
+}

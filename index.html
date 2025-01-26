@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <!-- Liens externes : Icônes (Boxicons) et police Google (Poppins) -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Feuille de style personnalisée -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <!-- ============================================ -->
+    <!-- Barre de navigation principale -->
+    <!-- ============================================ -->
+    <nav class="main-nav">
+      <div class="nav-container">
+        <!-- Logo cliquable avec ancrage vers la section Accueil -->
+        <a href="#accueil" class="logo">NACHID PORTFOLIO</a>
+
+        <!-- Conteneur des liens de navigation -->
+        <div class="nav-links">
+          <!-- Les liens utilisent des ancres pour le scroll fluide -->
+          <a href="#accueil" class="nav-link active">Accueil</a>
+          <a href="#formation" class="nav-link">Formation</a>
+          <a href="#competences" class="nav-link">Compétences</a>
+          <a href="#projets" class="nav-link">Projets</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- Section Accueil -->
+    <!-- ============================================ -->
+    <section class="section active" id="accueil">
+      <div class="section-content">
+        <h1 class="section-title">
+          Étudiant en Informatique | Passionné d'Innovation Technologique
+        </h1>
+
+        <!-- Grille de cartes verticales -->
+        <div class="card-grid-vertical">
+          <!-- Carte 1 : Présentation générale -->
+          <div class="card active">
+            <p>
+              Actuellement en dernière année de licence à l'Université Tech
+              France, je me spécialise dans les architectures logicielles et
+              l'intelligence artificielle. Mes langages de prédilection incluent
+              Python, Java et C++.
+            </p>
+          </div>
+
+          <!-- Carte 2 : Projets clés -->
+          <div class="card active">
+            <p>
+              J'ai développé plusieurs applications allant d'outils d'analyse de
+              données à des systèmes embarqués. Je recherche activement des
+              opportunités pour appliquer mes compétences dans des projets
+              innovants.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- Section Formation -->
+    <!-- ============================================ -->
+    <section class="section" id="formation">
+      <div class="section-content">
+        <h2 class="section-title">Parcours Académique</h2>
+
+        <!-- Grille de 3 colonnes pour les formations -->
+        <div class="card-grid">
+          <!-- Carte 1 : Formation principale -->
+          <div class="card">
+            <h3>Licence Informatique 🎓</h3>
+            <h4>Spécialisation Intelligence Artificielle</h4>
+            <p>Université Tech France</p>
+            <p>2022 - 2024 (en cours)</p>
+          </div>
+
+          <!-- Carte 2 : Certification technique -->
+          <div class="card">
+            <h3>Certification Cloud ☁️</h3>
+            <h4>Fondamentaux AWS</h4>
+            <p>Digital Skills Academy</p>
+            <p>En ligne | 2023</p>
+          </div>
+
+          <!-- Carte 3 : MOOC -->
+          <div class="card">
+            <h3>Machine Learning</h3>
+            <h4>Spécialisation en ligne</h4>
+            <p>Plateforme EdTech</p>
+            <p>En ligne | 2024</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- Section Compétences -->
+    <!-- ============================================ -->
+    <section class="section" id="competences">
+      <div class="section-content">
+        <h2 class="section-title">Expertises Techniques</h2>
+
+        <!-- Grille de 4 colonnes pour les catégories de compétences -->
+        <div class="competence-grid">
+          <!-- Catégorie Développement -->
+          <div class="competence-category">
+            <div class="category-header">
+              <i class="bx bx-code-block"></i>
+              <h3>Développement</h3>
+            </div>
+            <div class="tech-stack">
+              <span class="tech-pill"
+                ><i class="bx bxl-python"></i> Python</span
+              >
+              <span class="tech-pill"><i class="bx bxl-java"></i> Java</span>
+              <span class="tech-pill"
+                ><i class="bx bxl-c-plus-plus"></i> C++</span
+              >
+            </div>
+          </div>
+
+          <!-- Catégorie Web -->
+          <div class="competence-category">
+            <div class="category-header">
+              <i class="bx bx-globe"></i>
+              <h3>Web</h3>
+            </div>
+            <div class="tech-stack">
+              <span class="tech-pill"><i class="bx bxl-react"></i> React</span>
+              <span class="tech-pill"
+                ><i class="bx bxl-nodejs"></i> Node.js</span
+              >
+            </div>
+          </div>
+
+          <!-- Catégorie Outils -->
+          <div class="competence-category">
+            <div class="category-header">
+              <i class="bx bx-cog"></i>
+              <h3>DevOps</h3>
+            </div>
+            <div class="tech-stack">
+              <span class="tech-pill"
+                ><i class="bx bxl-docker"></i> Docker</span
+              >
+              <span class="tech-pill"><i class="bx bx-cloud"></i> AWS</span>
+            </div>
+          </div>
+
+          <!-- Catégorie Méthodologies -->
+          <div class="competence-category">
+            <div class="category-header">
+              <i class="bx bx-task"></i>
+              <h3>Méthodes</h3>
+            </div>
+            <div class="tech-stack">
+              <span class="tech-pill">Agile</span>
+              <span class="tech-pill">TDD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- Section Projets -->
+    <!-- ============================================ -->
+    <section class="section" id="projets">
+      <div class="section-content">
+        <h2 class="section-title">Réalisations</h2>
+
+        <!-- Grille de projets modulable -->
+        <div class="card-grid">
+          <!-- Projet 1 : Application IA -->
+          <div class="card">
+            <h3 class="h3-projet">
+              SmartClassifier
+              <!-- Lien GitHub factice -->
+              <a href="#" class="github-link">
+                <i class="bx bxl-github"></i>
+              </a>
+            </h3>
+            <div class="tech-stack">
+              <span class="tech-pill-projet">Python</span>
+              <span class="tech-pill-projet">TensorFlow</span>
+            </div>
+            <p>Système de classification d'images utilisant le deep learning</p>
+          </div>
+
+          <!-- Projet 2 : Plateforme Web -->
+          <div class="card">
+            <h3 class="h3-projet">
+              EduConnect
+              <a href="#" class="github-link">
+                <i class="bx bxl-github"></i>
+              </a>
+            </h3>
+            <div class="tech-stack">
+              <span class="tech-pill-projet">React</span>
+              <span class="tech-pill-projet">Firebase</span>
+            </div>
+            <p>Plateforme collaborative pour étudiants</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- Section Contact -->
+    <!-- ============================================ -->
+    <section class="section" id="contact">
+      <div class="section-content-contact">
+        <h2 class="section-title">Échangeons !</h2>
+
+        <!-- Formulaire générique (à configurer avec un service externe) -->
+        <form class="contact-form" action="#">
+          <div class="name-group">
+            <div class="form-group">
+              <input type="text" placeholder="Nom" required />
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Prénom" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="email" placeholder="email@exemple.com" required />
+          </div>
+
+          <div class="form-group">
+            <input type="text" placeholder="Objet" required />
+          </div>
+
+          <div class="form-group">
+            <textarea
+              rows="5"
+              placeholder="Votre message..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Envoyer</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- Navigation par points (sidebar) -->
+    <!-- ============================================ -->
+    <div class="nav-dots">
+      <div class="nav-dot active" data-target="accueil"></div>
+      <div class="nav-dot" data-target="formation"></div>
+      <div class="nav-dot" data-target="competences"></div>
+      <div class="nav-dot" data-target="projets"></div>
+      <div class="nav-dot" data-target="contact"></div>
+    </div>
+
+    <!-- Script principal -->
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
