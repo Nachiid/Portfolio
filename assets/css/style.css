@@ -1,60 +1,62 @@
 :root {
-  --primary: #2a3d45; /* Couleur primaire */
-  --secondary: #2a2a2a; /* Couleur secondaire */
-  --accent: #ff715b; /* Couleur d'accentuation */
-  --background: #f9f9f9; /* Couleur de fond */
-  --text: #2a2a2a; /* Couleur du texte */
-  --card-bg: #ffffff; /* Couleur de fond des cartes */
-  --nav-height: 70px; /* Hauteur de la barre de navigation */
-  --transition-time: 0.6s; /* Durée des transitions */
+  --primary: #2a3d45;
+  --secondary: #2a2a2a;
+  --accent: #ff715b;
+  --background: #f9f9f9;
+  --text: #2a2a2a;
+  --card-bg: #ffffff;
+  --nav-height: 70px;
+  --transition-time: 0.6s;
 }
 
-/* Réinitialisation des styles par défaut */
+:root.dark-mode {
+  --primary: #ffffff;
+  --secondary: #1c1c1c;
+  --accent: #ff8a73;
+  --background: #121212;
+  --text: #e0e0e0;
+  --card-bg: #1e1e1e;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif; /* Police de caractères par défaut */
+  font-family: "Poppins", sans-serif;
 }
 
-/* Style de base pour le corps de la page */
 body {
   background: var(--background);
   color: var(--text);
   height: 100vh;
-  overflow: hidden; /* Empêche le défilement */
+  overflow: hidden;
 }
 
-/* Style des liens */
 a {
-  color: var(--text); /* Couleur du texte des liens */
+  color: var(--text); /* Force la couleur du texte */
   text-decoration: none; /* Supprime le soulignement */
 }
-
-/* Barre de navigation principale */
 .main-nav {
   position: fixed;
   top: 0;
   width: 100%;
   height: var(--nav-height);
-  background: rgba(255, 255, 255, 0.97); /* Fond semi-transparent */
-  backdrop-filter: blur(12px); /* Effet de flou */
-  z-index: 1000; /* Assure que la barre de navigation est au-dessus des autres éléments */
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Ombre légère */
-  padding: 0 5%; /* Espacement intérieur */
+  background: var(--nav-height);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 0 5%;
 }
 
-/* Conteneur de la barre de navigation */
 .nav-container {
   max-width: 1280px;
   margin: 0 auto;
   height: 100%;
   display: flex;
-  justify-content: space-between; /* Espacement entre les éléments */
-  align-items: center; /* Alignement vertical */
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Style du logo */
 .logo {
   font-size: 1.6rem;
   font-weight: 700;
@@ -62,7 +64,6 @@ a {
   position: relative;
 }
 
-/* Ligne décorative sous le logo */
 .logo::after {
   content: "";
   position: absolute;
@@ -73,22 +74,19 @@ a {
   background: var(--accent);
 }
 
-/* Conteneur des liens de navigation */
 .nav-links {
   display: flex;
-  gap: 2.5rem; /* Espacement entre les liens */
+  gap: 2.5rem;
 }
 
-/* Style des liens de navigation */
 .nav-link {
   color: var(--primary);
   font-weight: 500;
   position: relative;
   padding: 0.5rem 0;
-  transition: color 0.3s ease; /* Transition de couleur au survol */
+  transition: color 0.3s ease;
 }
 
-/* Ligne décorative sous les liens de navigation */
 .nav-link::after {
   content: "";
   position: absolute;
@@ -97,51 +95,82 @@ a {
   width: 0;
   height: 2px;
   background: var(--accent);
-  transition: width 0.3s ease; /* Transition de largeur au survol */
+  transition: width 0.3s ease;
 }
 
-/* Style du lien actif */
 .nav-link.active {
   color: var(--accent);
 }
 
-/* Ligne décorative sous le lien actif ou au survol */
 .nav-link.active::after,
 .nav-link:hover::after {
   width: 100%;
 }
 
-/* Conteneur principal de la page */
+.options {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Espacement entre les boutons */
+  padding: 0.5rem 1rem; /* Espacement interne */
+}
+
+.dark-mode-btn,
+.tanslation-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--primary);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode-btn i {
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+.tanslation-link {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
 .container {
   position: relative;
   height: 100vh;
   width: 100vw;
-  padding-top: var(--nav-height); /* Espacement pour la barre de navigation */
+  padding-top: var(--nav-height);
 }
 
-/* Style des sections de la page */
+.dark-mode-btn i:hover,
+.tanslation-link:hover {
+  color: var(--accent); /* Couleur accentuée */
+  transform: scale(1.1); /* Légère animation de zoom */
+}
 .section {
   position: absolute;
   width: 100%;
   height: calc(100vh - var(--nav-height));
   padding: 2rem 5%;
-  overflow-y: auto; /* Défilement vertical */
-  overscroll-behavior: contain; /* Empêche le défilement de la page parente */
-  transform: translateY(100%); /* Déplace la section hors de la vue */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translateY(100%);
   opacity: 0;
   visibility: hidden;
   transition: transform var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1),
-    opacity var(--transition-time) ease; /* Transition pour l'apparition */
+    opacity var(--transition-time) ease;
 }
 
-/* Style de la section active */
 .section.active {
   transform: translateY(0);
   opacity: 1;
   visibility: visible;
 }
 
-/* Contenu des sections */
 .section-content {
   min-height: calc(100vh - var(--nav-height) - 4rem);
   display: flex;
@@ -151,7 +180,6 @@ a {
   margin: 0 auto;
 }
 
-/* Contenu des sections pour les compétences */
 .section-content-comp {
   min-height: calc(100vh - var(--nav-height) - 4rem);
   display: flex;
@@ -161,15 +189,13 @@ a {
   margin: 0 auto;
 }
 
-/* Grille des compétences */
 .competence-grid {
   display: grid;
-  gap: 2rem; /* Espacement entre les éléments */
+  gap: 2rem; /* Espacement de 2rem (32px) entre les éléments */
   grid-template-columns: 1fr; /* Une seule colonne */
-  padding: 2rem 0; /* Espacement intérieur */
+  padding: 2rem 0; /* Espacement intérieur pour la grille */
 }
 
-/* Grille des cartes */
 .card-grid {
   display: grid;
   gap: 1.5rem;
@@ -177,12 +203,11 @@ a {
   width: 100%;
 }
 
-/* Style par défaut de la grille des cartes */
+/* Remplacer la ligne grid-template-columns existante par : */
 .card-grid {
-  grid-template-columns: 1fr; /* Une seule colonne par défaut */
+  grid-template-columns: 1fr; /* Devenu la valeur par défaut */
 }
 
-/* Style des cartes */
 .card {
   background: var(--card-bg);
   padding: 2rem;
@@ -190,35 +215,38 @@ a {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   transform: translateY(20px);
   opacity: 0;
-  transition: all 0.5s ease; /* Transition pour l'apparition */
+  transition: all 0.5s ease;
 }
 
-/* Style des cartes actives */
 .card.active {
   transform: translateY(0);
   opacity: 1;
 }
 
-/* Grille verticale spécifique à l'accueil */
+/* Layout vertical spécifique à l'accueil */
 .card-grid-vertical {
   grid-template-columns: 1fr;
   max-width: 800px;
   margin: 0 auto;
 }
 
-/* Style des cartes dans la grille verticale */
 .card-grid-vertical .card {
   margin: 1rem 0;
   min-height: auto;
   padding: 1.5rem;
 }
 
-/* Grille horizontale pour les autres sections */
+/* Conserver le layout horizontal pour les autres sections */
 .card-grid:not(.card-grid-vertical) {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-/* Style du titre des sections */
+@media (min-width: 1024px) {
+  .card-grid-vertical .card {
+    padding: 2rem 3rem;
+  }
+}
+
 .section-title {
   font-size: 2.6rem;
   text-align: center;
@@ -226,7 +254,6 @@ a {
   position: relative;
 }
 
-/* Ligne décorative sous le titre des sections */
 .section-title::after {
   content: "";
   position: absolute;
@@ -238,33 +265,27 @@ a {
   background: var(--secondary);
 }
 
-/* Style du titre des projets */
 .h3-projet {
   display: flex; /* Utilise Flexbox pour aligner le titre et l'icône */
   align-items: center; /* Centre verticalement le titre et l'icône */
   justify-content: space-between; /* Espace entre le titre et l'icône */
 }
-
-/* Style des liens GitHub */
 .github-link {
-  text-decoration: none; /* Supprime le soulignement */
+  text-decoration: none; /* Supprime le soulignement du lien */
   color: var(--text); /* Couleur du texte */
   margin-left: 0.5rem; /* Espace entre le titre et l'icône */
-  transition: color 0.3s ease; /* Transition de couleur au survol */
+  transition: color 0.3s ease; /* Animation pour le survol */
 }
 
-/* Style des icônes GitHub */
 .github-link i {
   font-size: 1.4rem; /* Taille de l'icône */
   vertical-align: middle; /* Alignement vertical */
 }
 
-/* Changement de couleur au survol des liens GitHub */
 .github-link:hover {
-  color: var(--accent);
+  color: var(--accent); /* Changement de couleur au survol */
 }
 
-/* Conteneur des technologies utilisées */
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
@@ -272,7 +293,6 @@ a {
   margin-top: 1.5rem;
 }
 
-/* Style des pastilles de technologie */
 .tech-pill {
   background: var(--accent);
   color: white;
@@ -282,27 +302,24 @@ a {
   font-weight: 500;
 }
 
-/* Style des pastilles de technologie pour les projets */
 .tech-pill-projet {
-  border: 2px solid var(--accent); /* Bordure */
+  border: 2px solid var(--accent); /* Bordure de 2px, solide, avec la couleur d'accentuation */
   color: var(--text); /* Couleur du texte */
   padding: 0.6rem 1.2rem; /* Espacement intérieur */
   border-radius: 24px; /* Coins arrondis */
   font-size: 0.9rem; /* Taille de la police */
   font-weight: 500; /* Poids de la police */
   background: transparent; /* Fond transparent */
-  transition: all 0.3s ease; /* Transition au survol */
+  transition: all 0.3s ease; /* Animation pour les effets de survol */
 }
 
-/* Effet au survol des pastilles de technologie pour les projets */
 .tech-pill-projet:hover {
-  background: var(--accent); /* Fond avec la couleur d'accentuation */
-  color: var(--card-bg); /* Couleur du texte */
-  transform: translateY(-2px); /* Effet de levée */
-  box-shadow: 0 4px 12px rgba(255, 113, 91, 0.2); /* Ombre légère */
+  background: var(--accent); /* Fond avec la couleur d'accentuation au survol */
+  color: var(--card-bg); /* Couleur du texte au survol */
+  transform: translateY(-2px); /* Effet de levée au survol */
+  box-shadow: 0 4px 12px rgba(255, 113, 91, 0.2); /* Ombre légère au survol */
 }
 
-/* Points de navigation */
 .nav-dots {
   position: fixed;
   right: 2.5rem;
@@ -311,7 +328,6 @@ a {
   z-index: 1000;
 }
 
-/* Style des points de navigation */
 .nav-dot {
   display: block;
   width: 14px;
@@ -320,47 +336,43 @@ a {
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.15);
   cursor: pointer;
-  transition: all 0.3s ease; /* Transition au survol */
+  transition: all 0.3s ease;
 }
 
-/* Style du point de navigation actif */
 .nav-dot.active {
   background: var(--accent);
-  transform: scale(1.4); /* Agrandissement */
+  transform: scale(1.4);
 }
 
-/* Styles pour les écrans de petite taille (max-width: 768px) */
 @media (max-width: 768px) {
   .nav-links {
-    display: none; /* Masque les liens de navigation */
+    display: none;
   }
 
   .section {
-    padding: 90px 5% 2rem; /* Ajustement du padding */
+    padding: 90px 5% 2rem;
   }
 
   .section-title {
-    font-size: 2.2rem; /* Taille du titre réduite */
+    font-size: 2.2rem;
   }
 
   .card-grid {
-    grid-template-columns: 1fr; /* Une seule colonne */
+    grid-template-columns: 1fr;
   }
 
   .nav-dots {
-    right: 1.2rem; /* Ajustement de la position */
+    right: 1.2rem;
   }
 }
 
-/* En-tête des catégories */
 .category-header {
   display: flex;
-  align-items: center; /* Alignement vertical */
+  align-items: center; /* Aligne verticalement l'icône et le titre */
   gap: 1rem; /* Espace entre l'icône et le titre */
-  margin-bottom: 1.5rem; /* Espace en dessous */
+  margin-bottom: 1.5rem; /* Espace en dessous de l'en-tête */
 }
 
-/* Style des icônes de catégorie */
 .category-icon {
   width: 50px;
   height: 50px;
@@ -370,19 +382,16 @@ a {
   justify-content: center;
 }
 
-/* Style des icônes dans les catégories */
 .category-icon i {
   font-size: 1.8rem; /* Taille de l'icône */
   color: var(--text); /* Couleur de l'icône */
-  transition: transform 0.3s ease; /* Transition au survol */
+  transition: transform 0.3s ease; /* Animation au survol */
 }
 
-/* Effet de zoom au survol des icônes */
 .category-icon:hover i {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Effet de zoom au survol */
 }
 
-/* Style du titre des catégories */
 .category-title {
   font-size: 1.4rem;
   color: var(--primary); /* Couleur du titre */
@@ -390,7 +399,6 @@ a {
   position: relative;
 }
 
-/* Ligne décorative sous le titre des catégories */
 .category-title::after {
   content: "";
   position: absolute;
@@ -398,13 +406,12 @@ a {
   left: 0;
   width: 40%;
   height: 2px;
-  background: var(--secondary); /* Couleur de la ligne */
-  transition: width 0.3s ease; /* Transition de largeur au survol */
+  background: var(--secondary); /* Ligne de décoration sous le titre */
+  transition: width 0.3s ease; /* Animation de la ligne */
 }
 
-/* Effet au survol du titre des catégories */
 .category-header:hover .category-title::after {
-  width: 100%; /* La ligne s'étend */
+  width: 100%; /* La ligne s'étend au survol */
 }
 
 /* Section Contact */
@@ -417,13 +424,12 @@ a {
   margin: 0 auto;
 }
 
-/* Formulaire de contact */
 .contact-form {
-  max-width: 600px; /* Largeur maximale */
-  margin: 0 auto; /* Centrage */
+  max-width: 600px; /* Largeur maximale du formulaire */
+  margin: 0 auto; /* Centrer le formulaire */
   display: grid;
   grid-template-columns: 1fr; /* Une seule colonne */
-  gap: 1.5rem; /* Espacement entre les éléments */
+  gap: 1.5rem; /* Espace entre les divisions */
 }
 
 /* Groupe Nom et Prénom */
@@ -432,12 +438,11 @@ a {
   gap: 1.5rem; /* Espace entre les champs */
 }
 
-/* Style des champs du formulaire */
 .name-group .form-group {
   flex: 1; /* Les champs prennent une largeur égale */
 }
 
-/* Style des champs de formulaire */
+/* Style des champs (identique à avant) */
 .form-group input,
 .form-group textarea {
   width: 100%; /* Largeur complète */
@@ -447,17 +452,17 @@ a {
   font-size: 1rem;
   color: var(--text); /* Couleur du texte */
   background: var(--background); /* Fond du champ */
-  transition: border-color 0.3s ease; /* Transition de la bordure */
+  transition: border-color 0.3s ease; /* Animation de la bordure */
 }
 
-/* Style des champs de formulaire au focus */
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: var(--accent); /* Changement de couleur de la bordure */
+  border-color: var(
+    --accent
+  ); /* Changement de couleur de la bordure au focus */
   outline: none; /* Supprime le contour par défaut */
 }
 
-/* Style du bouton de soumission */
 .submit-btn {
   color: var(--secondary); /* Couleur du texte */
   padding: 0.8rem 1.5rem;
@@ -465,13 +470,12 @@ a {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease; /* Transition au survol */
+  transition: all 0.3s ease;
 }
 
-/* Effet au survol du bouton de soumission */
 .submit-btn:hover {
   color: var(--card-bg); /* Couleur du texte */
   border: none;
-  background: var(--accent); /* Changement de couleur */
+  background: var(--accent); /* Changement de couleur au survol */
   transform: translateY(-2px); /* Effet de levée */
 }

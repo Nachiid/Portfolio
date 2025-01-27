@@ -1,27 +1,25 @@
 class NavigationSystem {
   constructor() {
     // Initialisation des éléments clés du système
-    this.sections = Array.from(document.querySelectorAll(".section")); // Liste des sections de la page
+    this.sections = Array.from(document.querySelectorAll(".section")); // Liste des sections
     this.navItems = {
-      links: Array.from(document.querySelectorAll(".nav-link")), // Liens de navigation dans la barre de navigation
-      dots: Array.from(document.querySelectorAll(".nav-dot")), // Points de navigation (dots)
+      links: Array.from(document.querySelectorAll(".nav-link")), // Liens de navigation
+      dots: Array.from(document.querySelectorAll(".nav-dot")), // Points de navigation
     };
-    this.currentIndex = 0; // Index de la section actuellement active
-    this.isTransitioning = false; // Indique si une transition entre sections est en cours
+    this.currentIndex = 0; // Index de la section active
+    this.isTransitioning = false; // Indique si une transition est en cours
     this.scrollTimeout = null; // Timeout pour gérer les événements de défilement
     this.touchStartY = null; // Position initiale du toucher pour les appareils tactiles
-    this.logo = document.querySelector(".logo"); // Sélectionne le logo pour gérer les clics
-    this.init(); // Appelle la méthode d'initialisation
+    this.logo = document.querySelector(".logo");
+    this.init(); // Initialisation du système
   }
 
-  // Méthode d'initialisation du système
   init() {
     this.addEventListeners(); // Ajoute les écouteurs d'événements
     this.handleInitialHash(); // Gère l'URL avec un hash initial (si présent)
     this.animateCards(); // Anime les cartes dans la section active
   }
 
-  // Ajoute les écouteurs d'événements pour les interactions utilisateur
   addEventListeners() {
     // Écouteur pour le défilement à la molette
     window.addEventListener("wheel", this.handleScroll.bind(this), {
@@ -43,14 +41,16 @@ class NavigationSystem {
     this.navItems.dots.forEach((dot) =>
       dot.addEventListener("click", (e) => this.handleDotClick(e))
     );
+
+    // Écouteurs pour le changement du lien
+    window.addEventListener("hashchange", this.handleHashChange.bind(this));
   }
 
-  // Gère le défilement de la molette
   handleScroll(e) {
     // Empêche les transitions multiples
     if (this.isTransitioning) return;
 
-    const delta = Math.sign(e.deltaY); // Direction du défilement (1 pour vers le bas, -1 pour vers le haut)
+    const delta = Math.sign(e.deltaY); // Direction du défilement
     const currentSection = this.sections[this.currentIndex];
 
     // Vérifie si on peut encore défiler dans la section courante
@@ -58,21 +58,23 @@ class NavigationSystem {
       return;
     }
 
-    e.preventDefault(); // Empêche le comportement par défaut du défilement
-    this.changeSection(delta); // Change de section en fonction de la direction du défilement
+    e.preventDefault(); // Empêche le comportement par défaut
+    this.changeSection(delta); // Change de section
   }
 
-  // Gère le clic sur le logo
   handleLogoClick(e) {
     e.preventDefault();
     const targetIndex = 0; // Index de la section "accueil"
     if (targetIndex !== this.currentIndex) {
-      this.transitionSections(targetIndex, targetIndex > this.currentIndex ? 1 : -1);
+      this.transitionSections(
+        targetIndex,
+        targetIndex > this.currentIndex ? 1 : -1
+      );
     }
   }
 
-  // Vérifie si on peut défiler à l'intérieur de la section active
   canScroll(section, isScrollingDown) {
+    // Vérifie si on peut défiler à l'intérieur de la section active
     const { scrollTop, scrollHeight, clientHeight } = section;
     const buffer = 50; // Tolérance pour éviter les "rebonds"
 
@@ -81,22 +83,20 @@ class NavigationSystem {
       : scrollTop > buffer;
   }
 
-  // Gère le début d'un toucher sur un appareil tactile
   touchStart(e) {
-    this.touchStartY = e.touches[0].clientY; // Sauvegarde la position de départ du toucher
+    // Sauvegarde la position de départ pour les appareils tactiles
+    this.touchStartY = e.touches[0].clientY;
   }
 
-  // Gère la fin d'un toucher sur un appareil tactile
   touchEnd(e) {
     if (!this.touchStartY) return;
 
     // Calcule la distance parcourue par le toucher
     const deltaY = e.changedTouches[0].clientY - this.touchStartY;
-    this.changeSection(Math.sign(deltaY) * -1); // Inverse la direction pour correspondre au défilement
-    this.touchStartY = null; // Réinitialise la position de départ
+    this.changeSection(Math.sign(deltaY) * -1); // Inverse la direction
+    this.touchStartY = null; // Réinitialise la position
   }
 
-  // Change de section en fonction de la direction
   changeSection(direction) {
     // Empêche les changements multiples pendant une transition
     if (this.isTransitioning) return;
@@ -112,7 +112,6 @@ class NavigationSystem {
     }
   }
 
-  // Transition entre les sections
   transitionSections(newIndex, direction) {
     this.isTransitioning = true; // Indique qu'une transition est en cours
     const currentSection = this.sections[this.currentIndex];
@@ -141,21 +140,20 @@ class NavigationSystem {
     }, 10);
   }
 
-  // Met à jour l'état actif des liens et points de navigation
   updateNavItems(index, state) {
+    // Met à jour l'état actif des liens et points de navigation
     this.navItems.links[index].classList.toggle("active", state);
     this.navItems.dots[index].classList.toggle("active", state);
   }
 
-  // Anime les cartes de la section active
   animateCards() {
+    // Anime les cartes de la section active
     const cards = this.sections[this.currentIndex].querySelectorAll(".card");
     cards.forEach((card, i) => {
       setTimeout(() => card.classList.add("active"), i * 150);
     });
   }
 
-  // Gère le clic sur les liens de navigation
   handleNavClick(e) {
     e.preventDefault(); // Empêche le comportement par défaut du lien
     const targetIndex = this.navItems.links.indexOf(e.target);
@@ -167,8 +165,8 @@ class NavigationSystem {
     }
   }
 
-  // Gère le clic sur les points de navigation
   handleDotClick(e) {
+    // Gère le clic sur les points de navigation
     const targetIndex = this.navItems.dots.indexOf(e.target);
     if (targetIndex !== -1) {
       this.transitionSections(
@@ -178,8 +176,8 @@ class NavigationSystem {
     }
   }
 
-  // Gère le hash dans l'URL au chargement initial
   handleInitialHash() {
+    // Gère le hash dans l'URL au chargement initial
     const hash = window.location.hash.substring(1);
     const targetIndex = this.sections.findIndex((s) => s.id === hash);
     if (targetIndex > -1) {
@@ -190,11 +188,75 @@ class NavigationSystem {
     }
   }
 
-  // Met à jour l'URL avec le hash de la section active
+  //Amelioration possible que je n'ai pas reussi a faire fonctionner ( remplacer par le window.addEventListener("hashchange" ...) en dessous )
+  handleHashChange() {
+    const hash = window.location.hash.substring(1);
+    const targetIndex = this.sections.findIndex((s) => s.id === hash);
+
+    if (targetIndex > -1 && targetIndex !== this.currentIndex) {
+      this.transitionSections(
+        targetIndex,
+        targetIndex > this.currentIndex ? 1 : -1
+      );
+    }
+  }
+
   updateHistory() {
+    // Met à jour l'URL avec le hash de la section active
     history.replaceState(null, null, `#${this.sections[this.currentIndex].id}`);
   }
 }
 
 // Initialise le système de navigation
 new NavigationSystem();
+
+//Gestion du light * dark mode
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButton = document.getElementById("dark-mode-toggle");
+  const rootElement = document.documentElement; // Sélectionne <html>
+  const darkModeEnabled = localStorage.getItem("dark-mode") === "enabled";
+
+  // Fonction pour mettre à jour l'icône
+  const updateIcon = () => {
+    toggleButton.innerHTML = rootElement.classList.contains("dark-mode")
+      ? '<i class="bx bx-sun"></i>' // Icône de soleil pour le mode clair
+      : '<i class="bx bx-moon"></i>'; // Icône de lune pour le mode sombre
+  };
+
+  // Appliquer le mode sombre si activé précédemment
+  if (darkModeEnabled) {
+    rootElement.classList.add("dark-mode");
+    updateIcon();
+  }
+
+  // Gérer le clic sur le bouton
+  toggleButton.addEventListener("click", () => {
+    if (rootElement.classList.contains("dark-mode")) {
+      rootElement.classList.remove("dark-mode");
+      localStorage.setItem("dark-mode", "disabled"); // Sauvegarde de la préférence
+    } else {
+      rootElement.classList.add("dark-mode");
+      localStorage.setItem("dark-mode", "enabled"); // Sauvegarde de la préférence
+    }
+    updateIcon();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Définir l'URL de base sans hash ni paramètres
+  const baseUrl = window.location.origin + window.location.pathname;
+
+  // Écouter les changements de hash dans l'URL
+  window.addEventListener("hashchange", () => {
+    if (window.location.hash) {
+      // Rediriger vers l'URL de base
+      window.location.href = baseUrl;
+    }
+  });
+
+  // Vérifier l'URL actuelle au chargement de la page
+  if (window.location.hash || window.location.search) {
+    // Si un hash ou des paramètres sont présents, rediriger vers l'URL de base
+    window.location.href = baseUrl;
+  }
+});
