@@ -4,7 +4,7 @@ English :
 # 🌟 Modern Portfolio with Fluid Navigation
 
 **An elegant and interactive portfolio with smooth transitions, intuitive navigation, and dynamic animations.**  
-Check out the [Live Demo](https://6798033cb407dc8bb785ce19--nachidayman.netlify.app) | *Optimized for Desktop user only*
+Check out the [Live Demo](https://6798033cb407dc8bb785ce19--nachidayman.netlify.app) | *Optimized for All devices*
 
 ---
 
